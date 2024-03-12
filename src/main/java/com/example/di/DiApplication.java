@@ -1,5 +1,6 @@
 package com.example.di;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -19,5 +20,14 @@ public class DiApplication {
 				System.out.println(beanName);
 			}
 		}
+
+		MyCalculatorService myCalculatorService = (MyCalculatorService) context.getBean("myCalculatorService");
+		myCalculatorService.calcAdd(3, 4);
+
+		MyDatabaseService myDatabaseService = (MyDatabaseService) context.getBean("MyDatabaseService");
+		System.out.println(myDatabaseService.simpleRepository instanceof SimpleCrudRepositoryImpl);
+		System.out.println(myDatabaseService.complexRepository instanceof ComplexCrudRepositoryImpl);
+
+
 	}
 }
